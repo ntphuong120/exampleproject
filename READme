@@ -1,0 +1,35 @@
+Tính năng cụ thể
+1. Quản lý sách
+
+Thêm sách mới: Nhập thông tin chi tiết (tiêu đề, tác giả, thể loại, năm xuất bản, mã ISBN, số trang)
+Xem danh sách sách: Hiển thị tất cả sách trong thư viện
+Cập nhật thông tin sách: Chỉnh sửa thông tin của sách đã có
+Xóa sách: Loại bỏ sách khỏi thư viện
+
+2. Tìm kiếm và lọc
+
+Tìm kiếm theo tiêu đề: Tìm sách dựa trên tiêu đề (hỗ trợ tìm kiếm mờ)
+Tìm kiếm theo tác giả: Lọc sách theo tác giả
+Tìm kiếm theo thể loại: Lọc sách theo thể loại
+Tìm kiếm theo năm xuất bản: Lọc sách theo năm hoặc khoảng năm
+
+3. Quản lý dữ liệu
+
+Lưu thư viện: Lưu toàn bộ thông tin sách vào file
+Tải thư viện: Đọc thông tin sách từ file
+Sao lưu dữ liệu: Tạo bản sao lưu dữ liệu
+Nhập/Xuất CSV: Cho phép nhập/xuất dữ liệu ở định dạng CSV
+
+4. Thống kê
+
+Thống kê theo thể loại: Hiển thị số lượng sách theo từng thể loại
+Thống kê theo tác giả: Hiển thị số lượng sách của mỗi tác giả
+Thống kê theo năm: Hiển thị phân bố sách theo năm xuất bản
+Báo cáo tổng quan: Hiển thị tổng số sách, trung bình số trang, v.v.
+
+5. Tính năng bổ sung (nâng cao)
+
+Đánh giá sách: Cho phép đánh giá sách (1-5 sao) và ghi chú
+Theo dõi việc đọc: Đánh dấu sách đã đọc/đang đọc/chưa đọc
+Quản lý mượn/trả: Theo dõi sách đã cho mượn và ngày trả dự kiến
+Tìm kiếm nâng cao: Tìm kiếm kết hợp nhiều tiêu chí
