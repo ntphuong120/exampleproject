@@ -1,35 +1,90 @@
-Tính năng cụ thể
-1. Quản lý sách
+# Personal Library Management System
 
-Thêm sách mới: Nhập thông tin chi tiết (tiêu đề, tác giả, thể loại, năm xuất bản, mã ISBN, số trang)
-Xem danh sách sách: Hiển thị tất cả sách trong thư viện
-Cập nhật thông tin sách: Chỉnh sửa thông tin của sách đã có
-Xóa sách: Loại bỏ sách khỏi thư viện
+A C++ application for managing a personal book collection with features for adding, removing, borrowing, searching, and maintaining books.
 
-2. Tìm kiếm và lọc
+## Features
 
-Tìm kiếm theo tiêu đề: Tìm sách dựa trên tiêu đề (hỗ trợ tìm kiếm mờ)
-Tìm kiếm theo tác giả: Lọc sách theo tác giả
-Tìm kiếm theo thể loại: Lọc sách theo thể loại
-Tìm kiếm theo năm xuất bản: Lọc sách theo năm hoặc khoảng năm
+- **Book Management**: Add, remove, update, borrow, and return books
+- **Search System**: Find books by ID, title, author, or genre
+- **Statistics**: View library stats including total, available, and borrowed books
+- **Data Persistence**: Save and load library data to/from files
+- **Backup System**: Create and restore backups of library data
 
-3. Quản lý dữ liệu
+## File Structure
 
-Lưu thư viện: Lưu toàn bộ thông tin sách vào file
-Tải thư viện: Đọc thông tin sách từ file
-Sao lưu dữ liệu: Tạo bản sao lưu dữ liệu
-Nhập/Xuất CSV: Cho phép nhập/xuất dữ liệu ở định dạng CSV
+```
+personal_library/
+├── data/
+│   └── Book.dat
+├── include/
+│   ├── Book.h
+│   ├── FileHandler.h
+│   ├── Library.h
+│   ├── UserInterface.h
+│   └── Utils.h
+├── src/
+│   ├── Book.cpp
+│   ├── FileHandler.cpp
+│   ├── Library.cpp
+│   ├── Main.cpp
+│   ├── UserInterface.cpp
+│   └── Utils.cpp
+├── makefile
+└── README
+```
 
-4. Thống kê
+## Classes
 
-Thống kê theo thể loại: Hiển thị số lượng sách theo từng thể loại
-Thống kê theo tác giả: Hiển thị số lượng sách của mỗi tác giả
-Thống kê theo năm: Hiển thị phân bố sách theo năm xuất bản
-Báo cáo tổng quan: Hiển thị tổng số sách, trung bình số trang, v.v.
+- **Book**: Represents a book with properties like title, author, genre
+- **FileHandler**: Handles file operations for reading and writing book data
+- **Library**: Core library management functionality
+- **UserInterface**: Console-based user interface
+- **Utils**: Utility functions for input validation, display formatting, etc.
 
-5. Tính năng bổ sung (nâng cao)
+## Requirements
 
-Đánh giá sách: Cho phép đánh giá sách (1-5 sao) và ghi chú
-Theo dõi việc đọc: Đánh dấu sách đã đọc/đang đọc/chưa đọc
-Quản lý mượn/trả: Theo dõi sách đã cho mượn và ngày trả dự kiến
-Tìm kiếm nâng cao: Tìm kiếm kết hợp nhiều tiêu chí
+- C++17 compatible compiler (g++ recommended)
+- Standard C++ libraries
+
+## Building the Application
+
+```
+make directories  # Create necessary directories if they don't exist
+make              # Build the application
+```
+
+## Running the Application
+
+```
+make run
+```
+
+Or directly:
+
+```
+./library_system
+```
+
+## Admin Access
+
+For admin functions (backup/restore), use the password: `admin123`
+
+## Usage
+
+Upon starting the application:
+
+1. Book Management
+   - Add, remove, update, borrow, and return books
+2. Search for Books
+   - Search by ID, title, author, or genre
+   - View all, available, or borrowed books
+3. View Statistics
+   - See total, available, and borrowed book counts
+4. Admin Options
+   - Create backups
+   - Restore from backups
+0. Exit
+
+## License
+
+This software is open-source and available for personal and educational use.

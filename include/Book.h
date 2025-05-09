@@ -1,55 +1,44 @@
-// Định nghĩa lớp Book
 #ifndef BOOK_H
 #define BOOK_H
 
-#include <iostream>
 #include <string>
-#include <vector>
-
-enum class BookStatus {
-    UNREAD,
-    ONGOING,
-    DONE,
-    AVAILABLE,
-    UNAVAILABLE
-};
 
 class Book {
 private:
     int id;
     std::string title;
     std::string author;
-    std::vector<std::string> genre;
-    int numberPage;
+    std::string genre;
     int publicationYear;
-    BookStatus status;
+    bool borrowed;
+
 public:
-    Book(int id, const std::string& title, const std::string& author, const std::vector<std::string>& genre,
-        int numberPage, int publicationYear, BookStatus status);
-
+    // Constructors
+    Book();
+    Book(int id, const std::string& title, const std::string& author, 
+         const std::string& genre, int publicationYear);
+    
     // Getters
-    int GetID() const;
-    std::string GetTitle() const;
-    std::string GetAuthor() const;
-    std::vector<std::string> GetGenre() const;
-    int GetNumberPage() const;
-    int GetPublicationYear() const;
-    BookStatus GetBookStatus() const;
-
+    int getId() const;
+    std::string getTitle() const;
+    std::string getAuthor() const;
+    std::string getGenre() const;
+    int getPublicationYear() const;
+    bool isBorrowed() const;
+    
     // Setters
-    void SetTitle(const std::string& title);
-    void SetAuthor(const std::string& author);
-    void SetNumberPage(const int numberPage);
-    void SetPublicationYear(const int publicationYear);
-    void SetBookStatus(const std::string& statusStr);
-
-    // Status to string
-    bool isAvailable() const;
-    std::string GetStatusString() const;
-    static BookStatus stringtoStatus(const std::string& statusStr);
-
-    // Display 
-    void display() const;
+    void setId(int id);
+    void setTitle(const std::string& title);
+    void setAuthor(const std::string& author);
+    void setGenre(const std::string& genre);
+    void setPublicationYear(int year);
+    
+    // Book status
+    void borrowBook();
+    void returnBook();
+    
+    // String representation
+    std::string toString() const;
 };
 
-#endif
+#endif // BOOK_H

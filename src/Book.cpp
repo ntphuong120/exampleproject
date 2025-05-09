@@ -1,101 +1,76 @@
 #include "../include/Book.h"
-#include <string>
+#include <sstream>
 
-Book::Book(int id, const std::string& title, const std::string& author, const std::vector<std::string>& genre,
-        int numberPage, int publicationYear, BookStatus status) 
-        : id(id), title(title), author(author), genre(genre), numberPage(numberPage), 
-        publicationYear(publicationYear), status(status) {}
+Book::Book() : id(0), title(""), author(""), genre(""), publicationYear(0), borrowed(false) {}
+
+Book::Book(int id, const std::string& title, const std::string& author, 
+           const std::string& genre, int publicationYear) 
+    : id(id), title(title), author(author), genre(genre), 
+      publicationYear(publicationYear), borrowed(false) {}
 
 // Getters
-int Book::GetID() const {
-        return id;
-}
-std::string Book::GetTitle() const {
-        return title;
-}
-std::string Book::GetAuthor() const {
-        return author;
-}
-std::vector<std::string> Book::GetGenre() const {
-        return genre;
-}
-int Book::GetNumberPage() const {
-        return numberPage;
-}
-int Book::GetPublicationYear() const {
-        return publicationYear;
-}
-BookStatus Book::GetBookStatus() const {
-        return status;
+int Book::getId() const {
+    return id;
 }
 
-bool Book::isAvailable() const {
-        if (status == BookStatus::AVAILABLE) return true;
-        return false;
+std::string Book::getTitle() const {
+    return title;
+}
+
+std::string Book::getAuthor() const {
+    return author;
+}
+
+std::string Book::getGenre() const {
+    return genre;
+}
+
+int Book::getPublicationYear() const {
+    return publicationYear;
+}
+
+bool Book::isBorrowed() const {
+    return borrowed;
 }
 
 // Setters
-void Book::SetTitle(const std::string& title) {
-        this->title = title;
-}
-void Book::SetAuthor(const std::string& author) {
-        this->author = author;
-}
-void Book::SetNumberPage(int numberPage) {
-        this->numberPage = numberPage;
-}
-void Book::SetPublicationYear(int publicationYear) {
-        this->publicationYear = publicationYear;
-}
-void Book::SetBookStatus(const std::string& statusStr) {
-        this->status = stringtoStatus(statusStr);
+void Book::setId(int id) {
+    this->id = id;
 }
 
-std::string Book::GetStatusString() const {
-        switch (status) 
-        {
-        case BookStatus::UNAVAILABLE:
-                return "UNAVAILABLE";
-        case BookStatus::AVAILABLE:
-                return "AVAILABLE";
-        case BookStatus::UNREAD:
-                return "UNREAD";
-        case BookStatus::ONGOING:
-                return "ONGOING";
-        case BookStatus::DONE:
-                return "DONE";
-        default:
-                return "UNKNOWN";
-        }
+void Book::setTitle(const std::string& title) {
+    this->title = title;
 }
 
-BookStatus Book::stringtoStatus(const std::string& statusStr) {
-        if (statusStr == "Available" || statusStr == "AVAILBLE") {
-                return BookStatus::AVAILABLE;
-        } else if (statusStr == "Unavailable" || statusStr == "UNAVAILABLE") {
-                return BookStatus::UNAVAILABLE;
-        } else if (statusStr == "Unread" || statusStr == "UNREAD") {
-                return BookStatus::UNREAD;
-        } else if (statusStr == "Ongoing" || statusStr == "ONGOING") {
-                return BookStatus::ONGOING;
-        } else if (statusStr == "Done" || statusStr == "DONE") {
-                return BookStatus::DONE;
-        } else {
-                return BookStatus::AVAILABLE;
-        }
+void Book::setAuthor(const std::string& author) {
+    this->author = author;
 }
 
-void Book::display() const {
-        if (Book::isAvailable() == true) {
-                std::cout << "ID: " << id << std::endl;
-                std::cout << "Title: " << title << std::endl;
-                std::cout << "Author" << author << std::endl;
-                std::cout << "Genre: ";
-                for (const std::string& type : genre) {
-                        std::cout << type << ' ';
-                } std::cout << std::endl;
-                std::cout << "Numer Of Pages:" << numberPage << std::endl;
-                std::cout << "Publication Year: " << publicationYear << std::endl;
-                std::cout << "Status: " << GetStatusString() << std::endl << std::endl;
-        }
+void Book::setGenre(const std::string& genre) {
+    this->genre = genre;
+}
+
+void Book::setPublicationYear(int year) {
+    this->publicationYear = year;
+}
+
+// Book status
+void Book::borrowBook() {
+    borrowed = true;
+}
+
+void Book::returnBook() {
+    borrowed = false;
+}
+
+// String representation
+std::string Book::toString() const {
+    std::stringstream ss;
+    ss << "ID: " << id << "\n"
+       << "Title: " << title << "\n"
+       << "Author: " << author << "\n"
+       << "Genre: " << genre << "\n"
+       << "Publication Year: " << publicationYear << "\n"
+       << "Status: " << (borrowed ? "Borrowed" : "Available") << "\n";
+    return ss.str();
 }

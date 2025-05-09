@@ -1,55 +1,41 @@
-# Compiler and compiler flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -I include
-
-# Directories
-SRCDIR = src
-INCLUDEDIR = include
-BUILDDIR = build
-BINDIR = bin
-DATADIR = data
-
-# Target executable
-TARGET = $(BINDIR)/library_system
-
-# Source and object files
-SOURCES := $(wildcard $(SRCDIR)/*.cpp)
-OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(SOURCES))
-HEADERS := $(wildcard $(INCLUDEDIR)/*.h)
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
+INCLUDES = -Iinclude
+SOURCES = src/Book.cpp src/FileHandler.cpp src/Library.cpp src/UserInterface.cpp src/Utils.cpp src/Main.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+TARGET = library_system
 
 # Default target
-all: directories $(TARGET)
+all: $(TARGET)
 
-# Rule to create the target executable
+# Link the target
 $(TARGET): $(OBJECTS)
-	@mkdir -p $(BINDIR)
-	$(CXX) $(OBJECTS) -o $(TARGET)
-	@echo "Build successful! Run ./$(TARGET) to start the application."
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
 
-# Rule to compile source files into object files
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
-	@mkdir -p $(BUILDDIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Compile source files
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-# Create necessary directories
+# Create directories
 directories:
-	@mkdir -p $(BUILDDIR) $(BINDIR) $(DATADIR)
+	mkdir -p data
+	mkdir -p include
+	mkdir -p src
 
-# Clean build files
+# Clean up
 clean:
-	rm -rf $(BUILDDIR) $(BINDIR)
-	@echo "Clean completed!"
+	rm -f $(OBJECTS) $(TARGET)
 
-# Run the application
-run: all
+# Run the program
+run: $(TARGET)
 	./$(TARGET)
 
-# Help target
-help:
-	@echo "Available targets:"
-	@echo "  all       - Build the project (default)"
-	@echo "  clean     - Remove build files"
-	@echo "  run       - Build and run the application"
-	@echo "  help      - Display this help message"
+# Install the program (requires root privileges)
+install: $(TARGET)
+	cp $(TARGET) /usr/local/bin/
 
-.PHONY: all clean run help directories
+# Uninstall the program (requires root privileges)
+uninstall:
+	rm -f /usr/local/bin/$(TARGET)
+
+.PHONY: all clean run install uninstall directories
