@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
 INCLUDES = -Iinclude
-SOURCES = src/Book.cpp src/FileHandler.cpp src/Library.cpp src/UserInterface.cpp src/Main.cpp
+SOURCES = src/Book.cpp src/FileHandler.cpp src/Library.cpp src/UserInterface.cpp src/Main.cpp src/Utils.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 TARGET = library_system
 
@@ -24,7 +24,7 @@ directories:
 
 # Clean up
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	del /Q src\*.o $(TARGET).exe
 
 # Run the program
 run: $(TARGET)
@@ -32,10 +32,10 @@ run: $(TARGET)
 
 # Install the program (requires root privileges)
 install: $(TARGET)
-	cp $(TARGET) /usr/local/bin/
+	copy $(TARGET).exe \usr\local\bin\
 
 # Uninstall the program (requires root privileges)
 uninstall:
-	rm -f /usr/local/bin/$(TARGET)
+	del \usr\local\bin\$(TARGET).exe
 
 .PHONY: all clean run install uninstall directories

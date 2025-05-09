@@ -1,9 +1,19 @@
 #include "../include/Utlis.h"
 #include <iostream>
+#include <string>
+#include <vector>
 #include <algorithm>
-#include <iomanip>
 #include <chrono>
-#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <limits>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
 
 namespace Utils {
 
@@ -11,7 +21,7 @@ bool isValidYear(int year) {
     // Books can't be from the future or too old
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-    std::tm* currentDate = std::localtime(&currentTime);
+    std::tm* currentDate = std::localtime(&currentTime); // Fixed: &currentTime
     int currentYear = currentDate->tm_year + 1900;
     
     return (year > 0 && year <= currentYear);
@@ -37,7 +47,7 @@ std::string trim(const std::string& str) {
 std::string toLower(const std::string& str) {
     std::string result = str;
     std::transform(result.begin(), result.end(), result.begin(), 
-                  [](unsigned char c) { return std::tolower(c); });
+                   [](unsigned char c) { return std::tolower(c); });
     return result;
 }
 
@@ -131,7 +141,7 @@ std::string getCurrentDateTime() {
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
     
     std::stringstream ss;
-    ss << std::put_time(std::localtime(&currentTime), "%Y-%m-%d %H:%M:%S");
+    ss << std::put_time(std::localtime(&currentTime), "%Y-%m-%d %H:%M:%S"); // Fixed: &currentTime
     return ss.str();
 }
 

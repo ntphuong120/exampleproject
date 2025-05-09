@@ -3,7 +3,19 @@
 
 #include <string>
 #include <vector>
-#include "../include/Book.h"
+#include <chrono>
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
+#include <iostream>
+#include "../include/Book.h" // Ensure Book.h defines the Book class
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
 
 namespace Utils {
     // Input validation
@@ -28,4 +40,4 @@ namespace Utils {
     std::string formatDate(int day, int month, int year);
 }
 
-#endif // UTILS_H
+#endif
