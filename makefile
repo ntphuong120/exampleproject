@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
 INCLUDES = -Iinclude
-SOURCES = src/Book.cpp src/FileHandler.cpp src/Library.cpp src/UserInterface.cpp src/Utils.cpp src/Main.cpp
+SOURCES = src/Book.cpp src/FileHandler.cpp src/Library.cpp src/UserInterface.cpp src/Main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 TARGET = library_system
 
